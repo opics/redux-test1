@@ -5,7 +5,7 @@ const reducer = (state = initialState, action) => {
     return [ ...state, action.payload ];
   }
   if (action.type === 'REMOVE') {
-    return [ ...state.splice(-1, 1)];
+    return [ ...state.slice(0, -1)];
   }
   return state;
 };
