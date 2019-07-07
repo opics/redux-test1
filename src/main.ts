@@ -24,8 +24,6 @@ const reducer = (state = initialState, action) => {
 
 const store = createStore(reducer);
 
-console.log(store.getState());
+store.subscribe(() => console.log(store.getState()));
 
-store.dispatch({ type: 'ADD'});
-
-console.log(store.getState());
+store.dispatch({type: 'ADD'});
