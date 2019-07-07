@@ -11,6 +11,8 @@
 // platformBrowserDynamic().bootstrapModule(AppModule)
 //   .catch(err => console.error(err));
 
+import { createStore } from 'redux';
+
 const initialState = [];
 
 const reducer = (state = initialState, action) => {
@@ -20,12 +22,4 @@ const reducer = (state = initialState, action) => {
   return [];
 };
 
-let state = reducer(undefined, {});
-
-state = reducer(state, { type: 'ADD'});
-
-console.log(state);
-
-state = reducer(state, { type: 'ADD'});
-
-console.log(state);
+const store = createStore(reducer);
