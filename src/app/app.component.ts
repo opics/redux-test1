@@ -5,13 +5,7 @@ import reducer from '../reducers';
 
 const store = createStore(reducer);
 
-const { addObject, removeObject } = bindActionCreators(
-  {
-    addObject: actions.addObject,
-    removeObject: actions.removeObject
-  },
-  store.dispatch
-);
+const { addObject, removeObject } = bindActionCreators(actions, store.dispatch);
 
 @Component({
   selector: 'app-root',
