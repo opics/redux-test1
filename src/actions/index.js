@@ -1,5 +1,9 @@
-const addObject = (name) => { type: 'ADD', `Квартира ${name}`};
+const addObject = (name) => {
+  return { type: 'ADD', payload: `Квартира ${name}`}
+};
 
-const removeObject = () => { type: 'REMOVE' };
+const removeObject = () => {
+  return { type: 'REMOVE' }
+};
 
 export { addObject, removeObject };
