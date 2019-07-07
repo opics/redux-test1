@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { createStore } from 'redux';
-import { addObject, removeObject } from '../actions';
+import { createStore, bindActionCreators } from 'redux';
+import * as actions from '../actions';
 import reducer from '../reducers';
 
 const store = createStore(reducer);
+
+const { addObject, removeObject } = bindActionCreators(
+  {
+    addObject: actions.addObject,
+    removeObject: actions.removeObject
+  },
+  store.dispatch
+);
 
 @Component({
   selector: 'app-root',
@@ -19,11 +27,11 @@ export class AppComponent implements OnInit {
 
   add() {
     const rnd = Math.floor(Math.random() * 9) + 1;
-    store.dispatch(addObject(rnd));
+    addObject(rnd);
   }
 
   remove() {
-    store.dispatch(removeObject());
+    removeObject();
   }
 
   get() {
