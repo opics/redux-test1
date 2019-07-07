@@ -1,24 +1,44 @@
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'redux-test1';
-}
-
+import { Component, OnInit } from '@angular/core';
 import { createStore } from 'redux';
 import { addObject, removeObject } from '../actions';
 import reducer from '../reducers';
 
 const store = createStore(reducer);
 
-store.subscribe(() => console.log(store.getState()));
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  public list: string[] = [];
 
-const rnd = () => Math.floor(Math.random() * 9) + 1;
+  ngOnInit() {
+    store.subscribe(() => this.get());
+  }
 
-store.dispatch(addObject(rnd()));
+  add() {
+    const rnd = Math.floor(Math.random() * 9) + 1;
+    store.dispatch(addObject(rnd));
+  }
 
-store.dispatch(addObject(rnd()));
+  remove() {
+    store.dispatch(removeObject());
+  }
+
+  get() {
+    this.list =  store.getState() as string[];
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
