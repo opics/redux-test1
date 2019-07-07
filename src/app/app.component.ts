@@ -11,24 +11,13 @@ export class AppComponent {
 
 import { createStore } from 'redux';
 import { addObject, removeObject } from '../actions';
-
-const initialState = [];
-
-const reducer = (state = initialState, action) => {
-  if (action.type === 'ADD') {
-    return [ ...state, action.payload ];
-  }
-  if (action.type === 'REMOVE') {
-    return [ ...state.splice(-1, 1)];
-  }
-  return state;
-};
-
-const rnd = () => Math.floor(Math.random() * 9) + 1;
+import reducer from '../reducers';
 
 const store = createStore(reducer);
 
 store.subscribe(() => console.log(store.getState()));
+
+const rnd = () => Math.floor(Math.random() * 9) + 1;
 
 store.dispatch(addObject(rnd()));
 
